@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SIENNA Boutique Store — prendas y accesorios seleccionados con elegancia atemporal.">
+  <title>SIENNA — Boutique Store</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green: #003b2d;
+      --deep: #002c22;
+      --gold: #d8ad55;
+      --gold-light: #f0d28b;
+      --cream: #f7f4ec;
+      --ink: #17231e;
+      --muted: #777c73;
+      --white: #fffefa;
+      --serif: "Cormorant Garamond", Georgia, serif;
+      --sans: "Montserrat", Arial, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--cream); color: var(--ink); font-family: var(--sans); }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    .announcement { background: var(--deep); color: var(--gold-light); text-align: center; padding: 10px 16px; font-size: 10px; letter-spacing: .2em; text-transform: uppercase; }
+    header { position: sticky; top: 0; z-index: 20; background: rgba(247,244,236,.96); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,59,45,.12); }
+    .nav { max-width: 1200px; margin: auto; min-height: 86px; padding: 12px 28px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .brand img { width: 58px; height: 58px; object-fit: contain; border-radius: 50%; }
+    .brand-name { font-family: var(--serif); font-size: 25px; letter-spacing: .18em; color: var(--green); line-height: 1; }
+    .brand-sub { display: block; font-family: var(--sans); font-size: 8px; letter-spacing: .28em; margin-top: 5px; color: #98753a; }
+    .nav-links { display: flex; align-items: center; gap: 34px; }
+    .nav-links a { font-size: 10px; letter-spacing: .16em; text-transform: uppercase; transition: color .2s; }
+    .nav-links a:hover { color: #a47a31; }
+    .nav-cta, .button { display: inline-flex; align-items: center; justify-content: center; background: var(--green); color: var(--gold-light); border: 1px solid var(--gold); padding: 14px 23px; font-size: 10px; letter-spacing: .16em; text-transform: uppercase; transition: .25s; cursor: pointer; }
+    .nav-cta:hover, .button:hover { background: var(--gold); color: var(--deep); transform: translateY(-2px); }
+    .menu-toggle { display: none; background: none; border: 0; color: var(--green); font-size: 25px; cursor: pointer; }
+    .hero { min-height: 650px; display: grid; grid-template-columns: 1fr 1fr; background: var(--green); overflow: hidden; }
+    .hero-copy { padding: 90px max(7vw, 45px); display: flex; flex-direction: column; justify-content: center; align-items: flex-start; color: var(--white); position: relative; }
+    .eyebrow { color: var(--gold-light); font-size: 10px; letter-spacing: .28em; text-transform: uppercase; display: flex; align-items: center; gap: 13px; }
+    .eyebrow:before { content: ""; width: 34px; height: 1px; background: var(--gold); }
+    h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(58px, 7vw, 100px); line-height: .88; margin: 28px 0; letter-spacing: -.025em; }
+    h1 em { color: var(--gold-light); font-weight: 400; }
+    .hero-copy p { max-width: 420px; color: #d9e1da; font-size: 12px; line-height: 2; font-weight: 300; margin: 0 0 34px; }
+    .hero .button { background: transparent; }
+    .hero .button:hover { background: var(--gold); }
+    .hero-visual { min-height: 650px; position: relative; background: linear-gradient(135deg, rgba(0,0,0,.05), rgba(0,0,0,.45)), url("https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1400&q=85") center/cover; }
+    .hero-visual:after { content: ""; position: absolute; inset: 22px; border: 1px solid rgba(240,210,139,.65); pointer-events: none; }
+    .hero-seal { position: absolute; width: 150px; height: 150px; bottom: 52px; left: -75px; border-radius: 50%; overflow: hidden; border: 4px solid var(--gold); box-shadow: 0 10px 30px #001b14aa; }
+    .hero-seal img { width: 100%; height: 100%; object-fit: cover; }
+    .intro { text-align: center; padding: 100px 24px 90px; max-width: 850px; margin: auto; }
+    .intro .eyebrow { justify-content: center; color: #98753a; }
+    h2 { font-family: var(--serif); font-weight: 400; color: var(--green); font-size: clamp(42px, 5vw, 62px); line-height: 1; margin: 20px 0; }
+    .intro p { color: var(--muted); font-size: 12px; line-height: 2.1; max-width: 600px; margin: 0 auto; }
+    .collection { padding: 78px max(5vw, 24px) 100px; background: #eeece3; }
+    .section-head { max-width: 1200px; margin: 0 auto 38px; display: flex; justify-content: space-between; align-items: end; gap: 20px; }
+    .section-head h2 { margin: 12px 0 0; }
+    .section-head .eyebrow { color: #98753a; }
+    .filters { display: flex; gap: 8px; flex-wrap: wrap; }
+    .filter { background: transparent; border: 1px solid #c9c5b8; color: #60685f; padding: 10px 14px; font-size: 9px; letter-spacing: .12em; text-transform: uppercase; cursor: pointer; }
+    .filter.active, .filter:hover { background: var(--green); color: var(--gold-light); border-color: var(--green); }
+    .products { max-width: 1200px; margin: auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+    .product { min-width: 0; }
+    .product-image { position: relative; overflow: hidden; aspect-ratio: 3/4; background: #ddd8cb; }
+    .product-image img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s; display: block; }
+    .product:hover .product-image img { transform: scale(1.05); }
+    .product-tag { position: absolute; top: 14px; left: 14px; background: var(--cream); color: var(--green); padding: 7px 10px; font-size: 8px; letter-spacing: .14em; text-transform: uppercase; }
+    .product-info { display: flex; justify-content: space-between; gap: 10px; padding: 16px 2px; }
+    .product-info h3 { margin: 0 0 6px; font-family: var(--serif); font-size: 22px; font-weight: 500; color: var(--green); }
+    .product-info p { margin: 0; color: var(--muted); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; }
+    .price { color: #98753a; font-size: 12px; padding-top: 4px; white-space: nowrap; }
+    .story { display: grid; grid-template-columns: 1fr 1fr; min-height: 560px; background: var(--deep); color: var(--white); }
+    .story-image { background: url("https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1200&q=85") center/cover; min-height: 500px; }
+    .story-copy { padding: 80px clamp(35px, 8vw, 120px); display: flex; flex-direction: column; justify-content: center; align-items: flex-start; }
+    .story-copy h2 { color: var(--white); }
+    .story-copy h2 em { color: var(--gold-light); }
+    .story-copy p { color: #c6d0c8; font-size: 11px; line-height: 2.2; margin: 0 0 30px; max-width: 430px; }
+    .story-copy .eyebrow { margin-bottom: 12px; }
+    .contact { padding: 100px 24px; text-align: center; background: var(--cream); }
+    .contact p { color: var(--muted); font-size: 11px; line-height: 2; max-width: 480px; margin: 0 auto 28px; }
+    .contact .button { margin: 5px; }
+    footer { background: var(--green); color: var(--gold-light); padding: 45px 24px 25px; }
+    .footer-inner { max-width: 1200px; margin: auto; display: flex; justify-content: space-between; align-items: center; gap: 30px; flex-wrap: wrap; }
+    .footer-brand { font-family: var(--serif); font-size: 30px; letter-spacing: .2em; }
+    .footer-note { font-size: 9px; letter-spacing: .12em; color: #c6d0c8; }
+    .socials { display: flex; gap: 22px; font-size: 9px; letter-spacing: .12em; text-transform: uppercase; }
+    .copyright { max-width: 1200px; margin: 32px auto 0; border-top: 1px solid #ffffff2b; padding-top: 18px; color: #b9c7bd; font-size: 8px; letter-spacing: .12em; }
+    .toast { position: fixed; bottom: 24px; left: 50%; transform: translate(-50%, 20px); background: var(--deep); color: var(--gold-light); border: 1px solid var(--gold); padding: 14px 20px; font-size: 10px; letter-spacing: .08em; opacity: 0; pointer-events: none; transition: .3s; z-index: 50; }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+    @media (max-width: 850px) {
+      .nav-links { gap: 18px; }
+      .hero { grid-template-columns: 1fr  .85fr; }
+      .hero-copy { padding: 70px 35px; }
+      .products { grid-template-columns: repeat(2, 1fr); }
+      .section-head { align-items: flex-start; flex-direction: column; }
+    }
+    @media (max-width: 620px) {
+      .nav { min-height: 72px; padding: 8px 18px; }
+      .brand img { width: 48px; height: 48px; }
+      .brand-name { font-size: 21px; }
+      .menu-toggle { display: block; }
+      .nav-cta { display: none; }
+      .nav-links { display: none; position: absolute; top: 72px; left: 0; right: 0; background: var(--cream); padding: 22px; flex-direction: column; border-bottom: 1px solid #d8d2c3; }
+      .nav-links.open { display: flex; }
+      .hero { display: flex; flex-direction: column; }
+      .hero-copy { padding: 75px 28px 65px; }
+      .hero-visual { min-height: 390px; }
+      .hero-seal { width: 105px; height: 105px; left: auto; right: 25px; bottom: -48px; }
+      .intro { padding: 90px 25px 75px; }
+      .products { gap: 16px 12px; }
+      .product-info { flex-direction: column; gap: 5px; }
+      .story { grid-template-columns: 1fr; }
+      .story-image { min-height: 360px; }
+      .story-copy { padding: 65px 28px; }
+      .contact { padding: 80px 22px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="announcement">Elegancia atemporal · Piezas seleccionadas con intención</div>
+  <header>
+    <nav class="nav">
+      <a class="brand" href="#inicio" aria-label="Sienna inicio">
+        <img src="images/logo.png" alt="Emblema SIENNA">
+        <span class="brand-name">SIENNA<span class="brand-sub">BOUTIQUE STORE</span></span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">☰</button>
+      <div class="nav-links" id="navLinks">
+        <a href="#inicio">Inicio</a><a href="#coleccion">Colección</a><a href="#nosotros">Nuestra esencia</a><a href="#contacto">Contacto</a>
+      </div>
+      <a class="nav-cta" href="#coleccion">Descubrir piezas</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="hero-copy">
+        <span class="eyebrow">Una forma de expresar quién eres</span>
+        <h1>El arte de<br><em>vestir</em> bien.</h1>
+        <p>Una selección especial de prendas y detalles para quienes encuentran belleza en lo simple, valoran la calidad y hacen de cada día una ocasión para destacar.</p>
+        <a class="button" href="#coleccion">Explorar colección <span aria-hidden="true">&nbsp;↗</span></a>
+      </div>
+      <div class="hero-visual" role="img" aria-label="Inspiración de moda y estilo">
+        <div class="hero-seal"><img src="images/logo.png" alt="Sello de SIENNA Boutique"></div>
+      </div>
+    </section>
+
+    <section class="intro">
+      <span class="eyebrow">Bienvenida a Sienna</span>
+      <h2>Detalles que cuentan<br>tu historia.</h2>
+      <p>Creemos que el estilo está en los pequeños detalles. Por eso reunimos piezas con personalidad, elegancia y versatilidad, pensadas para acompañarte y hacerte sentir auténtica en cada momento.</p>
+    </section>
+
+    <section class="collection" id="coleccion">
+      <div class="section-head">
+        <div><span class="eyebrow">Selección Sienna</span><h2>La colección</h2></div>
+        <div class="filters" aria-label="Filtrar productos">
+          <button class="filter active" data-filter="todos">Todo</button>
+          <button class="filter" data-filter="ropa">Prendas</button>
+          <button class="filter" data-filter="accesorios">Accesorios</button>
+        </div>
+      </div>
+      <div class="products">
+        <article class="product" data-category="ropa">
+          <div class="product-image"><img loading="lazy" src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=700&q=80" alt="Vestido elegante en tono neutro"><span class="product-tag">Favorito</span></div>
+          <div class="product-info"><div><h3>Vestido Aurora</h3><p>Elegancia cotidiana</p></div><span class="price">$48.00</span></div>
+        </article>
+        <article class="product" data-category="ropa">
+          <div class="product-image"><img loading="lazy" src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=700&q=80" alt="Chaqueta de estilo clásico"></div>
+          <div class="product-info"><div><h3>Chaqueta Siena</h3><p>Clásico renovado</p></div><span class="price">$56.00</span></div>
+        </article>
+        <article class="product" data-category="accesorios">
+          <div class="product-image"><img loading="lazy" src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=700&q=80" alt="Accesorios dorados delicados"><span class="product-tag">Nuevo</span></div>
+          <div class="product-info"><div><h3>Aretes Étoile</h3><p>Un toque de luz</p></div><span class="price">$22.00</span></div>
+        </article>
+        <article class="product" data-category="accesorios">
+          <div class="product-image"><img loading="lazy" src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=700&q=80" alt="Bolso elegante de boutique"></div>
+          <div class="product-info"><div><h3>Bolso Celeste</h3><p>Tu esencial diario</p></div><span class="price">$64.00</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="story" id="nosotros">
+      <div class="story-image" role="img" aria-label="Selección de prendas de boutique"></div>
+      <div class="story-copy">
+        <span class="eyebrow">Nuestra esencia</span>
+        <h2>Menos, pero<br><em>inolvidable.</em></h2>
+        <p>SIENNA nace de la pasión por la moda con identidad. Nos inspira la armonía entre lo clásico y lo actual: tonos profundos, texturas especiales y piezas que no necesitan excesos para hacerse notar.</p>
+        <a class="button" href="#contacto">Conoce más <span aria-hidden="true">&nbsp;↗</span></a>
+      </div>
+    </section>
+
+    <section class="contact" id="contacto">
+      <span class="eyebrow">Estamos para ayudarte</span>
+      <h2>Encuentra tu próxima pieza favorita.</h2>
+      <p>¿Tienes una consulta sobre tallas, disponibilidad o nuestra colección? Escríbenos y estaremos encantados de atenderte.</p>
+      <a class="button" href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram ↗</a>
+      <a class="button" href="https://wa.me/" target="_blank" rel="noopener">WhatsApp ↗</a>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div><div class="footer-brand">SIENNA</div><div class="footer-note">BOUTIQUE STORE · ELEGANCIA EN CADA DETALLE</div></div>
+      <div class="socials"><a href="#inicio">Inicio</a><a href="#coleccion">Colección</a><a href="#contacto">Contacto</a></div>
+    </div>
+    <div class="copyright">© <span id="year"></span> SIENNA BOUTIQUE STORE. TODOS LOS DERECHOS RESERVADOS.</div>
+  </footer>
+  <div class="toast" id="toast" role="status">Colección actualizada</div>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+      menuToggle.textContent = navLinks.classList.contains('open') ? '×' : '☰';
+    });
+    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      menuToggle.textContent = '☰';
+    }));
+
+    const filters = document.querySelectorAll('.filter');
+    const products = document.querySelectorAll('.product');
+    const toast = document.getElementById('toast');
+    let toastTimer;
+    filters.forEach(button => {
+      button.addEventListener('click', () => {
+        filters.forEach(item => item.classList.remove('active'));
+        button.classList.add('active');
+        const category = button.dataset.filter;
+        products.forEach(product => {
+          product.hidden = category !== 'todos' && product.dataset.category !== category;
+        });
+        toast.textContent = category === 'todos' ? 'Mostrando toda la colección' :
+          category === 'ropa' ? 'Mostrando prendas' : 'Mostrando accesorios';
+        toast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toast.classList.remove('show'), 1800);
+      });
+    });
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
